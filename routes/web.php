@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\ProviderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Web\IndexController::class, 'index']);
+
+Route::resource('categories', CategoryController::class);
+Route::resource('providers', ProviderController::class);
+
+
