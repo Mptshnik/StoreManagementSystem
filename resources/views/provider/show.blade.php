@@ -9,7 +9,7 @@
                         <div class="h3 col-auto mb-3">Поставщик "{{$provider->name}}"</div>
                     </div>
                     <div class="row">
-                        <div class="col-auto"><a href="{{route('providers.index')}}" class="link-primary">Все категории</a></div>
+                        <div class="col-auto"><a href="{{route('providers.index')}}" class="link-primary">Все поставщики</a></div>
                     </div>
                 </div>
                 <div class="card-body p-0 col-auto">
