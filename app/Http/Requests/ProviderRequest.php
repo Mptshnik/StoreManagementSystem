@@ -16,7 +16,7 @@ class ProviderRequest extends FormRequest
         return [
             'name' => 'required|string|unique:providers,id|min:1|max:255',
             'phone_number' => 'required',
-            'tax_number' => 'required|numeric|digits_between:12,12',
+            'tax_number' => 'required|numeric|digits_between:10,10',
             'address' => 'required|string|min:1|max:1000',
         ];
     }
@@ -31,11 +31,10 @@ class ProviderRequest extends FormRequest
             'name.max' => 'Максимальная длина наименования 255 символов',
 
             'phone_number.required' => 'Номер телефона обязателен',
-            //'phone_number.regex' => 'Номер телефона должен соответствовать шаблону 0000-000-0000',
 
             'tax_number.required' => 'ИНН обязателен',
             'tax_number.numeric' => 'ИНН должен состоять из цифр',
-            'tax_number.digits_between' => 'Длина ИНН 12 цифр',
+            'tax_number.digits_between' => 'Длина ИНН 10 цифр',
 
             'address.required' => 'Адрес обязателен',
             'address.string' => 'Адрес должен содержать строку',

@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\Web\AuthorizationController;
 use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\IndexController;
+use App\Http\Controllers\Web\ItemController;
+use App\Http\Controllers\Web\ManufacturerController;
 use App\Http\Controllers\Web\ProviderController;
+use App\Http\Controllers\Web\RoleController;
+use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +20,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    return view('test');
+});
 
-Route::get('/', [\App\Http\Controllers\Web\IndexController::class, 'index']);
+Route::get('/login', [AuthorizationController::class, 'index'])->name('login');
+Route::post('/login', [AuthorizationController::class, 'login'])->name('authorize');
 
-Route::resource('categories', CategoryController::class);
-Route::resource('providers', ProviderController::class);
+Route::middleware(['auth', 'permission'])->group(function () {
+    Route::get('/', [IndexController::class, 'index'])->name('home');
+    Route::post('/logout', [AuthorizationController::class, 'logout'])
+        ->name('logout');
 
+    Route::post('/users/{user}/reset-password', [UserController::class, 'resetPassword'])
+        ->name('users.reset-password');
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('providers', ProviderController::class);
+    Route::resource('manufacturers', ManufacturerController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('items', ItemController::class);
+});
 

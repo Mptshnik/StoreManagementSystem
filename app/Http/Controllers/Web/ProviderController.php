@@ -22,8 +22,7 @@ class ProviderController extends Controller
 
     public function store(ProviderRequest $request)
     {
-        $data = $request->validated();
-        Provider::create($data);
+        Provider::create($request->validated());
 
         return redirect()->route('providers.index');
     }
